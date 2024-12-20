@@ -1,32 +1,49 @@
 import React from "react";
 import { useParams } from "react-router-dom";
 import useAuth from "../../CustomHook/useAuth";
+import { SiWalkman } from "react-icons/si";
+import Swal from "sweetalert2";
 
 const JobApply = () => {
-    const {id} = useParams();
-    const { user } = useAuth();
-    console.log(id);
+  const { id } = useParams();
+  const { user } = useAuth();
+  console.log(id);
 
-    const submitJobApplication = e =>{
-        e.preventDefault();
-        const form = e.target;
-        const linkedIn = form.linkedin.value
-        const GitHub = form.GitHub.value
-        const resume = form.resume.value
+  const submitJobApplication = (e) => {
+    e.preventDefault();
+    const form = e.target;
+    const linkedIn = form.linkedin.value;
+    const GitHub = form.GitHub.value;
+    const resume = form.resume.value;
 
-        const jobApplication = {
-            job_id: id,
-            applicant_email: user.email,
-            linkedIn,
-            GitHub,
-            resume
+    const jobApplication = {
+      job_id: id,
+      applicant_email: user.email,
+      linkedIn,
+      GitHub,
+      resume,
+    };
+
+    fetch("http://localhost:5000/job-applications", {
+        method: 'POST',
+        headers: {
+            'content-type' : 'application/json'
+        },
+        body: JSON.stringify(jobApplication)
+    })
+      .then((res) => res.json())
+      .then((data) => {
+        if(data.insertedId){
+            Swal.fire({
+                position: "top-end",
+                icon: "success",
+                title: "Application Submitted",
+                showConfirmButton: false, 
+                timer: 1500
+            })
         }
-
-
-    }
-
-
-
+      });
+  };
 
   return (
     <div className="hero bg-base-200 min-h-screen">
@@ -34,9 +51,9 @@ const JobApply = () => {
         <div className="text-center">
           <h1 className="text-5xl font-bold">Apply Now!</h1>
         </div>
-        <div className="card bg-base-100 shadow-2xl mt-12 ">
-          <div className="card-body w-[400px]  gap-4">
-            
+        <form action="" onSubmit={submitJobApplication}>
+          <div className="card bg-base-100 shadow-2xl mt-12 ">
+            <div className="card-body w-[400px]  gap-4">
               <div className="flex flex-col ">
                 <label className="fieldset-label">LinkedIn URL</label>
                 <input
@@ -66,9 +83,9 @@ const JobApply = () => {
               </div>
 
               <button className="btn btn-neutral mt-4">Apply</button>
-            
+            </div>
           </div>
-        </div>
+        </form>
       </div>
     </div>
   );
