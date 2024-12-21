@@ -7,6 +7,8 @@ import ErrorPage from "../Common/ErrorPage";
 import JobDetails from "../Pages/JobDetails/JobDetails";
 import PrivateRoute from "../Pages/PrivateRoute/PrivateRoute";
 import JobApply from "../Pages/JobApply/JobApply";
+import MyApplications from "../Pages/MyApplications/MyApplications";
+import AddJob from "../Pages/AddJob/AddJob";
 
 const Router = createBrowserRouter([
   {
@@ -41,6 +43,22 @@ const Router = createBrowserRouter([
         element: (
           <PrivateRoute>
             <JobApply></JobApply>
+          </PrivateRoute>
+        ),
+      },
+      {
+        path: "/myApplications",
+        element: (
+          <PrivateRoute>
+            <MyApplications></MyApplications>
+          </PrivateRoute>
+        ),
+      },
+      {
+        path: "/add-job",
+        element: (
+          <PrivateRoute>
+            <AddJob></AddJob>
           </PrivateRoute>
         ),
       },

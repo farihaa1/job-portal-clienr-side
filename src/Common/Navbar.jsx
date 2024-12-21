@@ -16,10 +16,10 @@ const Navbar = () => {
         <NavLink to='/'>Home</NavLink>
       </li>
       <li>
-        <NavLink to='/'>Home</NavLink>
+        <NavLink to='/myApplications'>My Applications</NavLink>
       </li>
       <li>
-        <NavLink to='/'>Home</NavLink>
+        <NavLink to='/add-job'>Add a Job</NavLink>
       </li>
 
     
@@ -55,7 +55,7 @@ const Navbar = () => {
         <a className="btn btn-ghost text-xl font-bold"><img src={logo} className="w-10 " alt="" /> Job Portal</a>
       </div>
       <div className="navbar-center hidden lg:flex">
-        <ul className="menu menu-horizontal px-1">{Links}</ul>
+        <ul className="menu menu-horizontal px-1 gap-2">{Links}</ul>
       </div>
       <div className="navbar-end">
         {user ? (

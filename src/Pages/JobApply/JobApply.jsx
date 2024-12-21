@@ -1,10 +1,13 @@
 import React from "react";
-import { useParams } from "react-router-dom";
+import { useNavigate, useParams } from "react-router-dom";
 import useAuth from "../../CustomHook/useAuth";
 import { SiWalkman } from "react-icons/si";
 import Swal from "sweetalert2";
 
 const JobApply = () => {
+
+  const navigate = useNavigate();
+
   const { id } = useParams();
   const { user } = useAuth();
   console.log(id);
@@ -40,7 +43,8 @@ const JobApply = () => {
                 title: "Application Submitted",
                 showConfirmButton: false, 
                 timer: 1500
-            })
+            });
+            navigate('/myApplications')
         }
       });
   };
