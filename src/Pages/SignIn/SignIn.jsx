@@ -1,6 +1,6 @@
 import Lottie from "lottie-react";
 import React, { useContext } from "react";
-import SignInData from './../../assets/Lottie/signin.json'
+import SignInData from './../../assets/Lottie/bannerData.json'
 import AuthContext from "../../Context/AuthContext";
 import { useLocation, useNavigate } from "react-router-dom";
 
